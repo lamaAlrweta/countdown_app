@@ -5,19 +5,24 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.white,
+        primaryColor: Color.fromRGBO(113, 90, 206, 1),
+        backgroundColor: Color.fromRGBO(0, 22, 30, 41),
+        accentColor: Color.fromRGBO(75, 83, 228, 1),
+        // accentColorBrightness: Brightness.dark,
+        buttonTheme: ButtonTheme.of(context).copyWith(
+          buttonColor: Color.fromRGBO(75, 83, 228, 0.3),
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
