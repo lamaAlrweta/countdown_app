@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './screens/home_screen.dart';
+
+
 void main() {
   runApp(MyApp());
 }
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeScreen(),
     );
   }
 }
