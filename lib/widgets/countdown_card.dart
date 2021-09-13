@@ -10,7 +10,7 @@ class CountdaownCard extends StatelessWidget {
          child: ClipRRect(
            
           borderRadius: BorderRadius.all(
-            Radius.circular(5),
+            Radius.circular(7),
           ),
           child: Container(
             width: MediaQuery.of(context).size.width,
