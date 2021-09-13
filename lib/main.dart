@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './screens/home_screen.dart';
-
+import 'screens/settings_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,21 +13,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.white,
-      //   primaryColor: Color.fromRGBO(113, 90, 206, 1),
-      //   backgroundColor: Color.fromRGBO(0, 22, 30, 41),
-      //   accentColor: Color.fromRGBO(75, 83, 228, 1),
-      //   // accentColorBrightness: Brightness.dark,
-      //   buttonTheme: ButtonTheme.of(context).copyWith(
-      //     buttonColor: Color.fromRGBO(75, 83, 228, 0.3),
-      //     textTheme: ButtonTextTheme.primary,
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(20),
-      //     ),
-      //   ),
-      // ),
-      home: HomeScreen(),
+      theme: ThemeData(
+        textTheme: Theme.of(context)
+            .textTheme
+            .apply(bodyColor: Colors.white, displayColor: Colors.white),
+        fontFamily: 'Montserrat-Arabic',
+
+        //card color
+        primaryColor: Color.fromRGBO(113, 90, 206, 1),
+        backgroundColor: Color.fromRGBO(0, 22, 30, 41),
+        //second color of card
+        accentColor: Color.fromRGBO(75, 83, 228, 1),
+        buttonTheme: ButtonTheme.of(context).copyWith(
+          buttonColor: Color.fromRGBO(34, 46, 62, 1),
+          textTheme: ButtonTextTheme.primary,
+        ),
+      ),
+      home:HomeScreen(),
     );
   }
 }
