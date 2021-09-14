@@ -2,6 +2,7 @@ import 'package:countdown/screens/home_screen.dart';
 import 'package:countdown/screens/settings_screen.dart';
 import 'package:countdown/widgets/customized_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class TabBarScreen extends StatefulWidget {
   @override
@@ -48,26 +49,32 @@ class _TabBarScreenState extends State<TabBarScreen> {
       ),
       body: _pages[_selectedpageIndex]['page'],
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 10,
-        backgroundColor: Theme.of(context).backgroundColor,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Theme.of(context).primaryColor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        iconSize: 28,
-        currentIndex: _selectedpageIndex,
-        onTap: _selectedTab,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
-          ),
-        ],
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          elevation: 10,
+          backgroundColor: Theme.of(context).backgroundColor,
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Theme.of(context).primaryColor,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 28,
+          currentIndex: _selectedpageIndex,
+          onTap: _selectedTab,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('home'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
+        ),
       ),
     );
   }
