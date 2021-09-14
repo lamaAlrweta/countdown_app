@@ -3,10 +3,7 @@ import 'package:countdown/screens/settings_screen.dart';
 import 'package:countdown/widgets/customized_appbar.dart';
 import 'package:flutter/material.dart';
 
-
-
 class TabBarScreen extends StatefulWidget {
- 
   @override
   _TabBarScreenState createState() => _TabBarScreenState();
 }
@@ -16,17 +13,18 @@ class _TabBarScreenState extends State<TabBarScreen> {
 
   @override
   void initState() {
-     _pages = [
+    _pages = [
       {
         'page': HomeScreen(),
         'title': 'Countdowns',
-        'hint': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+        'hint':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
       },
       {
         'page': SettingsScreen(),
         'title': 'Settings',
-        'hint': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-
+        'hint':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
       }
     ];
     super.initState();
@@ -43,12 +41,11 @@ class _TabBarScreenState extends State<TabBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  PreferredSize(
-        preferredSize: Size.fromHeight(100), 
-        child:CustomAppbar(
-        _pages[_selectedpageIndex]['title'], _pages[_selectedpageIndex]['hint']),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: CustomAppbar(_pages[_selectedpageIndex]['title'],
+            _pages[_selectedpageIndex]['hint']),
       ),
-     
       body: _pages[_selectedpageIndex]['page'],
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: BottomNavigationBar(
@@ -56,6 +53,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
         backgroundColor: Theme.of(context).backgroundColor,
         unselectedItemColor: Colors.grey,
         selectedItemColor: Theme.of(context).primaryColor,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        iconSize: 28,
         currentIndex: _selectedpageIndex,
         onTap: _selectedTab,
         items: [
