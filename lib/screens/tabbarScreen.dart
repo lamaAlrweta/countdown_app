@@ -1,8 +1,9 @@
 import 'package:countdown/screens/home_screen.dart';
-import 'package:countdown/screens/settings_screen.dart';
 import 'package:countdown/widgets/customized_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'setting_screen.dart';
 
 class TabBarScreen extends StatefulWidget {
   @override

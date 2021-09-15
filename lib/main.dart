@@ -1,9 +1,6 @@
 import 'package:countdown/screens/tabbarScreen.dart';
 import 'package:flutter/material.dart';
 
-import './screens/home_screen.dart';
-import 'screens/settings_screen.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -22,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         //card color
         primaryColor: Color.fromRGBO(113, 90, 206, 1),
-        scaffoldBackgroundColor:Color.fromRGBO(0, 22, 30, 41) ,
+        scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
         backgroundColor: Color.fromRGBO(34, 46, 62, 1),
         //second color of card
         accentColor: Color.fromRGBO(75, 83, 228, 1),
@@ -31,7 +28,7 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home:TabBarScreen(),
+      home: TabBarScreen(),
     );
   }
 }
