@@ -47,6 +47,19 @@ class _TabBarScreenState extends State<TabBarScreen> {
         child: CustomAppbar(_pages[_selectedpageIndex]['title'],
             _pages[_selectedpageIndex]['hint']),
       ),
+      floatingActionButton: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.4),
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          child: const Icon(Icons.add),
+        ),
+      ),
       body: _pages[_selectedpageIndex]['page'],
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: Theme(
