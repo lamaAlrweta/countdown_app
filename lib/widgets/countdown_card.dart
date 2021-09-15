@@ -3,19 +3,15 @@ import 'package:flutter/material.dart';
 class CountdaownCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(7),
         ),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 132,
-//margin: EdgeInsets.all(16),
-          //padding: EdgeInsets.all(12),
-
           color: Theme.of(context).primaryColor.withOpacity(0.4),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,7 +22,6 @@ class CountdaownCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      // alignment: Alignment.topLeft,
                       color: Theme.of(context).primaryColor.withOpacity(0.5),
                       width: 46,
                       height: 46,
@@ -40,14 +35,16 @@ class CountdaownCard extends StatelessWidget {
                             'My birthday',
                             style: TextStyle(
                               fontSize: 16,
-                              fontFamily: 'Montserrat-Arabic',
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat-Arabic',
                             ),
                           ),
                           Text(
                             'Sep 19, 2021',
                             style: TextStyle(
                               fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Montserrat-Arabic',
                             ),
                           ),
                         ],
@@ -66,110 +63,10 @@ class CountdaownCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                // border: Border.all(width: 2),
-                                ),
-                            padding: EdgeInsets.all(2),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Days',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                // border: Border.all(width: 2),
-                                ),
-                            padding: EdgeInsets.all(2),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Days',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                // border: Border.all(width: 2),
-                                ),
-                            padding: EdgeInsets.all(2),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Days',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                // border: Border.all(width: 2),
-                                ),
-                            padding: EdgeInsets.all(2),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Days',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        counter('14', 'Days'),
+                        counter('15', 'Hours'),
+                        counter('16', 'Minuts'),
+                        counter('17', 'Seconds'),
                       ],
                     ),
                   ),
@@ -177,6 +74,45 @@ class CountdaownCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class counter extends StatelessWidget {
+  final num;
+  final numKey;
+
+  counter(this.num, this.numKey);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            // border: Border.all(width: 2),
+            ),
+        padding: const EdgeInsets.all(2),
+        child: Column(
+          children: [
+            Text(
+              num,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Montserrat-Arabic'),
+            ),
+            Text(
+              numKey,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Montserrat-Arabic',
+              ),
+            ),
+          ],
         ),
       ),
     );
