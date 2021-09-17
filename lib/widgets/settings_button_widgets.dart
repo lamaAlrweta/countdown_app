@@ -9,6 +9,7 @@ class SettingsButtons extends StatefulWidget {
   final double height;
   final double width;
   final font;
+  final colorButton;
 
   SettingsButtons({
     this.textonTop,
@@ -19,6 +20,7 @@ class SettingsButtons extends StatefulWidget {
     this.height,
     this.width,
     this.font,
+    this.colorButton,
   });
 
   @override
@@ -26,23 +28,12 @@ class SettingsButtons extends StatefulWidget {
 }
 
 class _SettingsButtonsState extends State<SettingsButtons> {
-  bool hasBeenPressed1 = false;
-  bool hasBeenPressed2 = false;
-  bool turnOnButton = true;
-  bool turnOffButton = true;
-
-  void turnOn() {
-    setState(() {
-      turnOnButton = false;
-      turnOffButton = false;
-    });
-  }
-
-  void turnOff() {
-    setState(() {
-      turnOnButton = true;
-      turnOffButton = true;
-    });
+  bool turnOnButton;
+  bool thirdButton;
+  @override
+  void initState() {
+    super.initState();
+    turnOnButton = false;
   }
 
   @override
@@ -60,17 +51,26 @@ class _SettingsButtonsState extends State<SettingsButtons> {
               children: [
                 Flexible(
                   child: RaisedButton(
-                    onPressed: () => {turnOnButton ? turnOn : null},
+                    onPressed: () {
+                      setState(() {
+                        turnOnButton = !turnOnButton;
+                      });
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     padding: const EdgeInsets.all(0.0),
                     child: Ink(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(75, 83, 228, 1),
-                            Color.fromRGBO(113, 90, 206, 1)
-                          ],
+                          colors: turnOnButton == true
+                              ? [
+                                  Color.fromRGBO(75, 83, 228, 1),
+                                  Color.fromRGBO(113, 90, 206, 1)
+                                ]
+                              : [
+                                  Color.fromRGBO(34, 46, 62, 1),
+                                  Color.fromRGBO(34, 46, 62, 1),
+                                ],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
@@ -94,22 +94,30 @@ class _SettingsButtonsState extends State<SettingsButtons> {
                         ),
                       ),
                     ),
-                    //   hasBeenPressed1 = !hasBeenPressed1
                   ),
                 ),
                 SizedBox(width: 10),
                 RaisedButton(
-                  onPressed: () => {turnOffButton ? null : turnOff},
+                  onPressed: () {
+                    setState(() {
+                      turnOnButton = !turnOnButton;
+                    });
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   padding: const EdgeInsets.all(0.0),
                   child: Ink(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(34, 46, 62, 1),
-                          Color.fromRGBO(34, 46, 62, 1),
-                        ],
+                        colors: turnOnButton == true
+                            ? [
+                                Color.fromRGBO(34, 46, 62, 1),
+                                Color.fromRGBO(34, 46, 62, 1),
+                              ]
+                            : [
+                                Color.fromRGBO(75, 83, 228, 1),
+                                Color.fromRGBO(113, 90, 206, 1)
+                              ],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),

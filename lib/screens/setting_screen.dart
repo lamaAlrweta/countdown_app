@@ -8,6 +8,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool turnOnButton;
+  bool thirdButton;
+  @override
+  void initState() {
+    super.initState();
+    turnOnButton = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,13 +28,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 25,
               ),
               SettingsButtons(
-                  textonTop: "Language",
-                  // function1: () {},
-                  // function2: () {},
-                  buttonName1: "العربية",
-                  buttonName2: "English",
-                  height: 60,
-                  width: 110),
+                textonTop: "Language",
+                // function1: () {},
+                // function2: () {},
+                buttonName1: "العربية",
+                buttonName2: "English",
+                height: 60,
+                width: 110,
+              ),
               SizedBox(
                 height: 25,
               ),
@@ -45,13 +54,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               SettingsButtons(
                 textonTop: "Our Team",
-                font: FontWeight.normal,
                 // function1: () {},
                 // function2: () {},
                 buttonName1: "Lama Alrweta\n @lamruabd",
                 buttonName2: "Afaf Alsmel\n @AfafAlsmel",
                 height: 50,
                 width: 110,
+                font: FontWeight.normal,
               ),
             ])),
       )),
