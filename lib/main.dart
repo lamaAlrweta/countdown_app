@@ -1,5 +1,8 @@
+import 'package:countdown/screens/home_screen.dart';
 import 'package:countdown/screens/tabbarScreen.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/add_countdown_form.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,10 +19,14 @@ class MyApp extends StatelessWidget {
             .textTheme
             .apply(bodyColor: Colors.white, displayColor: Colors.white),
         fontFamily: 'Montserrat-Arabic',
-
+        textSelectionColor: Color.fromRGBO(198, 199, 200, 1),
+        //HintColor
+        hintColor: Color.fromRGBO(73, 90, 114, 1),
         //card color
         primaryColor: Color.fromRGBO(113, 90, 206, 1),
-        scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
+
+        scaffoldBackgroundColor: Color.fromRGBO(22, 30, 41, 1),
+        // scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
         backgroundColor: Color.fromRGBO(34, 46, 62, 1),
         //second color of card
         accentColor: Color.fromRGBO(75, 83, 228, 1),
@@ -28,7 +35,7 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: TabBarScreen(),
+      home: HomeScreen(),
     );
   }
 }
