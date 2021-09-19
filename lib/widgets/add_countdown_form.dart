@@ -7,6 +7,7 @@ class AddCountdownForm extends StatefulWidget {
   final buttonKeyboardType;
   final contentPaddingText;
   final icon;
+  final buttonColor;
 
   AddCountdownForm(
       {this.userInput,
@@ -14,7 +15,8 @@ class AddCountdownForm extends StatefulWidget {
       this.buttonHinit,
       this.buttonKeyboardType,
       this.contentPaddingText,
-      this.icon});
+      this.icon,
+      this.buttonColor});
   @override
   _AddCountdownFormState createState() => _AddCountdownFormState();
 }
@@ -30,17 +32,6 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           textDirection: TextDirection.ltr,
           children: [
-            // SafeArea(
-            //   child: Scaffold(
-            //     body: SingleChildScrollView(
-            //       child: Container(
-            //         margin: EdgeInsets.all(24),
-            //         child: Form(
-            //           key: formKey,
-            //           child: Column(
-            // SizedBox(
-            //   height: 50,
-            // ),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -60,17 +51,12 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
               decoration: InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.only(top: 15),
-                  // child: Align(
-                  //   alignment: Alignment.centerLeft,
                   child: Icon(
                     widget.icon,
                     color: Colors.white,
                   ),
-                  // ),
                 ),
                 contentPadding: widget.contentPaddingText,
-                // new EdgeInsets.symmetric(
-                //     vertical: 25.0, horizontal: 10.0),
                 disabledBorder: InputBorder.none,
                 hintText: widget.buttonHinit,
                 hintStyle: TextStyle(
@@ -80,10 +66,11 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
                   fontWeight: FontWeight.w400,
                 ),
                 filled: true,
-                fillColor: Theme.of(context).backgroundColor,
+                fillColor: widget.buttonColor,
+                //Theme.of(context).backgroundColor,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
               validator: (String value) {
@@ -97,80 +84,6 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
                 // widget.userInput = value;
               },
             ),
-            // SizedBox(
-            //   height: 18,
-            // ),
-            // SizedBox(height: 100),
-            // RaisedButton(
-            //     child: Text(
-            //       'Submit',
-            //       style: TextStyle(color: Colors.purple, fontSize: 16),
-            //     ),
-            //     onPressed: () {
-            //       if (!formKey.currentState.validate()) {
-            //         return;
-            //       }
-
-            //       formKey.currentState.save();
-            //     }),
-            //   Align(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       "Emoji",
-            //       style: TextStyle(
-            //         color: Theme.of(context).textSelectionColor,
-            //       ),
-            //       textAlign: TextAlign.left,
-            //     ),
-            //   ),
-            //   _buildName(),
-            //   SizedBox(
-            //     height: 18,
-            //   ),
-            //   Align(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       "Date",
-            //       style: TextStyle(
-            //         color: Theme.of(context).textSelectionColor,
-            //       ),
-            //       textAlign: TextAlign.left,
-            //     ),
-            //   ),
-            //   _buildName(),
-            //   SizedBox(
-            //     height: 18,
-            //   ),
-            //   Align(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       "Time",
-            //       style: TextStyle(
-            //         color: Theme.of(context).textSelectionColor,
-            //       ),
-            //       textAlign: TextAlign.left,
-            //     ),
-            //   ),
-            //   _buildName(),
-            //   SizedBox(
-            //     height: 18,
-            //   ),
-            //   Align(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       "Notes",
-            //       style: TextStyle(
-            //         color: Theme.of(context).textSelectionColor,
-            //       ),
-            //       textAlign: TextAlign.left,
-            //     ),
-            //   ),
-            //   _buildName(),
-            //   SizedBox(
-            //     height: 18,
-            //   ),
-            //   SizedBox(height: 100),
-            // ],
           ],
         ),
       ),
