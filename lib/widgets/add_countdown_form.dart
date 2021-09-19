@@ -7,7 +7,8 @@ class AddCountdownForm extends StatefulWidget {
   final buttonKeyboardType;
   final contentPaddingText;
   final icon;
-  final buttonColor;
+  final butonColor;
+  final IconButtonFuncation;
 
   AddCountdownForm(
       {this.userInput,
@@ -16,7 +17,8 @@ class AddCountdownForm extends StatefulWidget {
       this.buttonKeyboardType,
       this.contentPaddingText,
       this.icon,
-      this.buttonColor});
+      this.butonColor,
+      this.IconButtonFuncation});
   @override
   _AddCountdownFormState createState() => _AddCountdownFormState();
 }
@@ -49,12 +51,14 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
             TextFormField(
               keyboardType: widget.buttonKeyboardType,
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: widget.IconButtonFuncation,
+                    icon: Icon(
+                      widget.icon,
+                      color: Colors.white,
+                    )),
                 prefixIcon: Padding(
                   padding: EdgeInsets.only(top: 15),
-                  child: Icon(
-                    widget.icon,
-                    color: Colors.white,
-                  ),
                 ),
                 contentPadding: widget.contentPaddingText,
                 disabledBorder: InputBorder.none,
@@ -66,7 +70,7 @@ class _AddCountdownFormState extends State<AddCountdownForm> {
                   fontWeight: FontWeight.w400,
                 ),
                 filled: true,
-                fillColor: widget.buttonColor,
+                fillColor: widget.butonColor,
                 //Theme.of(context).backgroundColor,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
