@@ -1,4 +1,7 @@
 import 'package:countdown/screens/home_screen.dart';
+import 'package:countdown/screens/setting_screen.dart';
+import 'package:countdown/screens/tabbarScreen.dart';
+import 'package:countdown/widgets/countdown_card.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/add_countdown_form_scree.dart';
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: HomeScreen(),
+      home: TabBarScreen(),
     );
   }
 }

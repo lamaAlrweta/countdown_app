@@ -1,4 +1,5 @@
 import 'package:countdown/widgets/add_countdown_form.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddCountdownFormScreen extends StatefulWidget {
@@ -7,22 +8,80 @@ class AddCountdownFormScreen extends StatefulWidget {
 }
 
 class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
-  DateTime selectedDate = DateTime.now();
+  DateTime _selectedDate;
+  final TextEditingController _textEditingController = TextEditingController();
 
-  Future<void> selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
+  _selectDate() async {
+    DateTime pickedDate = await showModalBottomSheet<DateTime>(
+      context: context,
+      builder: (context) {
+        DateTime tempPickedDate;
+        return Theme(
+          data: Theme.of(context).copyWith(
+            primaryColor: Colors.amber,
+          ),
+          child: Container(
+            height: 250,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      CupertinoButton(
+                        child: Text(
+                          'Cancle',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      CupertinoButton(
+                        child: Text(
+                          'done',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Montserrat-Arabic',
+                              color: Colors.white,
+                              backgroundColor: Colors.purple),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(tempPickedDate);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  height: 0,
+                  thickness: 1,
+                ),
+                Expanded(
+                  child: Container(
+                    child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.date,
+                      onDateTimeChanged: (DateTime dateTime) {
+                        tempPickedDate = dateTime;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
-        selectedDate = picked;
+        _selectedDate = pickedDate;
+        _textEditingController.text = pickedDate.toString();
       });
-    // Theme(
-    //   data: ThemeData(primaryColor: Colors.white),
-    //   child: selectedDate(context),
-    // );
+    }
   }
 
   @override
@@ -59,7 +118,7 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
                   buttonFeild: 'Date',
                   buttonHinit: 'Mar 19,2022',
                   buttonKeyboardType: TextInputType.datetime,
-                  IconButtonFuncation: () => selectDate(context),
+                  IconButtonFuncation: () => _selectDate(),
                   butonColor: Theme.of(context).backgroundColor,
                   icon: Icons.calendar_today,
                 ),
