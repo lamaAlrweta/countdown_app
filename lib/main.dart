@@ -1,7 +1,9 @@
-import 'package:countdown/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'screens/add_countdown_form_scree.dart';
+import '../screens/tabbarScreen.dart';
+import '../l10n/l10n.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      supportedLocales: L10n.all,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      
+
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: Theme.of(context)
@@ -34,7 +45,7 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: HomeScreen(),
+      home: TabBarScreen(),
     );
   }
 }
