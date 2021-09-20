@@ -1,8 +1,9 @@
-import 'package:countdown/screens/home_screen.dart';
-import 'package:countdown/screens/settings_screen.dart';
-import 'package:countdown/widgets/customized_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import '../screens/home_screen.dart';
+import '../screens/settings_screen.dart';
+import '../widgets/customized_appbar.dart';
 
 class TabBarScreen extends StatefulWidget {
   @override
@@ -26,7 +27,8 @@ class _TabBarScreenState extends State<TabBarScreen> {
         'title': 'Settings',
         'hint':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-      }
+      },
+     
     ];
     super.initState();
   }
@@ -56,6 +58,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.4),
           onPressed: () {
             // Add your onPressed code here!
+        //  Navigator.push(context, )
           },
           child: const Icon(Icons.add),
         ),
