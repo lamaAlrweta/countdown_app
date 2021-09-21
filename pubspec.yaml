@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.17.0
+  basic_utils: ^3.6.0
+
 
 
 

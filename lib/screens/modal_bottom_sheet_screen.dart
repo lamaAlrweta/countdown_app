@@ -1,15 +1,18 @@
-import 'package:countdown/widgets/add_countdown_form.dart';
+import 'package:countdown/widgets/modal_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddCountdownFormScreen extends StatefulWidget {
+class modalBottomSheetScreen extends StatefulWidget {
   @override
-  _AddCountdownFormScreenState createState() => _AddCountdownFormScreenState();
+  _modalBottomSheetScreenState createState() => _modalBottomSheetScreenState();
 }
 
-class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
+class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
   DateTime _selectedDate;
+
   final TextEditingController _textEditingController = TextEditingController();
+
+  DateTime dateTime = DateTime.now();
 
   _selectDate() async {
     DateTime pickedDate = await showModalBottomSheet<DateTime>(
@@ -84,6 +87,23 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
     }
   }
 
+  Widget addButton() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: RaisedButton(
+        onPressed: () {},
+        child: const Text('add',
+            style: TextStyle(
+              fontSize: 15,
+              fontFamily: 'Montserrat-Arabic',
+            )),
+        color: Colors.purple[700],
+        textColor: Colors.purple[900],
+        elevation: 3,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -93,10 +113,11 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
+                addButton(),
                 SizedBox(
-                  height: 120,
+                  height: 80,
                 ),
-                AddCountdownForm(
+                modalBottomSheet(
                   buttonFeild: 'Title',
                   buttonHinit: 'Ex: My friend birthday',
                   buttonKeyboardType: TextInputType.text,
@@ -105,7 +126,7 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                AddCountdownForm(
+                modalBottomSheet(
                   buttonFeild: 'Emoji',
                   buttonHinit: 'Enter an emoji',
                   buttonKeyboardType: TextInputType.text,
@@ -114,7 +135,7 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                AddCountdownForm(
+                modalBottomSheet(
                   buttonFeild: 'Date',
                   buttonHinit: 'Mar 19,2022',
                   buttonKeyboardType: TextInputType.datetime,
@@ -125,7 +146,7 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                AddCountdownForm(
+                modalBottomSheet(
                   buttonFeild: 'Time',
                   buttonHinit: '9:00 am',
                   buttonKeyboardType: TextInputType.text,
@@ -135,7 +156,7 @@ class _AddCountdownFormScreenState extends State<AddCountdownFormScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                AddCountdownForm(
+                modalBottomSheet(
                   buttonFeild: 'Notes',
                   buttonHinit: 'To Do list',
                   buttonKeyboardType: TextInputType.text,
