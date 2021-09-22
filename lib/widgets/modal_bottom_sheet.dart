@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AddCountdownForm extends StatefulWidget {
+class modalBottomSheet extends StatefulWidget {
   final String userInput;
   final String buttonFeild;
   final String buttonHinit;
@@ -10,7 +10,7 @@ class AddCountdownForm extends StatefulWidget {
   final butonColor;
   final IconButtonFuncation;
 
-  AddCountdownForm(
+  modalBottomSheet(
       {this.userInput,
       this.buttonFeild,
       this.buttonHinit,
@@ -20,10 +20,10 @@ class AddCountdownForm extends StatefulWidget {
       this.butonColor,
       this.IconButtonFuncation});
   @override
-  _AddCountdownFormState createState() => _AddCountdownFormState();
+  _modalBottomSheetState createState() => _modalBottomSheetState();
 }
 
-class _AddCountdownFormState extends State<AddCountdownForm> {
+class _modalBottomSheetState extends State<modalBottomSheet> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
