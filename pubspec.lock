@@ -7,9 +7,6 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "2.5.0"
-=======
     version: "2.6.1"
   basic_utils:
     dependency: "direct main"
@@ -18,7 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.6.0"
->>>>>>> 540e2b99f26767d0bead181b837f8fad4405f66a
   boolean_selector:
     dependency: transitive
     description:
@@ -90,8 +86,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   http:
     dependency: transitive
     description:
@@ -106,7 +100,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
->>>>>>> 540e2b99f26767d0bead181b837f8fad4405f66a
   intl:
     dependency: "direct main"
     description:
@@ -114,8 +107,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-<<<<<<< HEAD
-=======
   js:
     dependency: transitive
     description:
@@ -137,7 +128,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
->>>>>>> 540e2b99f26767d0bead181b837f8fad4405f66a
   matcher:
     dependency: transitive
     description:
@@ -219,7 +209,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import '../screens/tabbarScreen.dart';
-import '../l10n/l10n.dart';
+import 'l10n/l10n.dart';
 import 'screens/modal_bottom_sheet_screen.dart';
+import 'screens/tabbarScreen.dart';
 import 'test.dart';
 
 void main() {
@@ -23,8 +23,6 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-      
-
       ],
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -37,7 +35,7 @@ class MyApp extends StatelessWidget {
         hintColor: Color.fromRGBO(73, 90, 114, 1),
         //card color
         primaryColor: Color.fromRGBO(113, 90, 206, 1),
-
+        shadowColor: Color.fromRGBO(113, 90, 206, 1),
         scaffoldBackgroundColor: Color.fromRGBO(22, 30, 41, 1),
         // scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
         backgroundColor: Color.fromRGBO(34, 46, 62, 1),
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: TabBarScreen(),
+      home: modalBottomSheetScreen(),
     );
   }
 }

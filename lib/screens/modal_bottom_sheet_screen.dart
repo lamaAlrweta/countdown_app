@@ -1,6 +1,7 @@
-import 'package:countdown/widgets/modal_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/modal_bottom_sheet.dart';
 
 class modalBottomSheetScreen extends StatefulWidget {
   @override
@@ -87,19 +88,24 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
     }
   }
 
-  Widget addButton() {
+  Widget addButton(String Buttontext, textAlign, textColor, backgroundColor) {
     return Align(
-      alignment: Alignment.topRight,
-      child: RaisedButton(
-        onPressed: () {},
-        child: const Text('add',
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: 'Montserrat-Arabic',
-            )),
-        color: Colors.purple[700],
-        textColor: Colors.purple[900],
-        elevation: 3,
+      alignment: textAlign,
+      //Alignment.topRight,
+      child: SizedBox(
+        child: RaisedButton(
+          onPressed: () {},
+          child: Text(Buttontext,
+              style: TextStyle(
+                fontSize: 13,
+                fontFamily: 'Montserrat-Arabic',
+              )),
+
+          color: backgroundColor,
+          textColor: textColor,
+          //Colors.purple[900],
+          elevation: 3,
+        ),
       ),
     );
   }
@@ -113,7 +119,16 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
-                addButton(),
+                addButton(
+                    'add',
+                    Alignment.topRight,
+                    Theme.of(context).accentColor,
+                    Theme.of(context).backgroundColor),
+                addButton(
+                    'Cancel',
+                    Alignment.topLeft,
+                    Theme.of(context).accentColor,
+                    Theme.of(context).backgroundColor),
                 SizedBox(
                   height: 80,
                 ),

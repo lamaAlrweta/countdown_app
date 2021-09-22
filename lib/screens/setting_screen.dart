@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 import '../widgets/settings_button_widgets.dart';
 
@@ -33,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 textonTop: "Language",
                 // function1: () {},
                 // function2: () {},
-                buttonName1: "العربية" ,
+                buttonName1: "العربية",
                 buttonName2: "English",
                 height: 60,
                 width: 110,
