@@ -8,7 +8,7 @@ class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 16, right: 16, top:32),
+      padding: EdgeInsets.only(left: 16, right: 16, top: 40),
       child: Container(
         height: 100,
         child: Column(
@@ -16,10 +16,19 @@ class CustomAppbar extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat-Arabic',
+              ),
             ),
             Expanded(
-              child: Text(hint),
+              child: Text(
+                hint,
+                style: TextStyle(
+                  fontFamily: 'Montserrat-Arabic',
+                ),
+              ),
             ),
           ],
         ),
