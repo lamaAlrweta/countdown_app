@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsButtons extends StatefulWidget {
   final String textonTop;
@@ -39,11 +40,15 @@ class _SettingsButtonsState extends State<SettingsButtons> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            textDirection: TextDirection.ltr,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            //textDirection: TextDirection.ltr,
             children: [
-          Text(widget.textonTop),
+          Text(
+            widget.textonTop,
+            style: TextStyle(
+              fontFamily: 'Montserrat-Arabic',
+            ),
+          ),
           SizedBox(height: 10),
           Container(
             child: Row(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/setting_screen.dart';
@@ -17,22 +16,24 @@ class _TabBarScreenState extends State<TabBarScreen> {
 
   @override
   void initState() {
-    _pages = [
-      {
-        'page': HomeScreen(),
-        'title': 'Countdowns',
-        'hint':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-      },
-      {
-        'page': SettingsScreen(),
-        'title': 'Settings',
-        'hint':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-      },
-     
-    ];
     super.initState();
+    Future.delayed(
+      Duration.zero,
+      () {
+        _pages = [
+          {
+            'page': HomeScreen(),
+            'title': '${AppLocalizations.of(context).countdowns}',
+            'hint': '${AppLocalizations.of(context).homeDescription}',
+          },
+          {
+            'page': SettingsScreen(),
+            'title': '${AppLocalizations.of(context).settings}',
+            'hint': '${AppLocalizations.of(context).settingsdescription}',
+          },
+        ];
+      },
+    );
   }
 
   int _selectedpageIndex = 0;
@@ -60,7 +61,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.4),
           onPressed: () {
             // Add your onPressed code here!
-        //  Navigator.push(context, )
+            //  Navigator.push(context, )
           },
           child: const Icon(Icons.add),
         ),

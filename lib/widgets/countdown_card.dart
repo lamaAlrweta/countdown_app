@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class CountdaownCard extends StatelessWidget {
   @override
@@ -31,8 +34,9 @@ class CountdaownCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          
                           Text(
-                            'My birthday',
+                            AppLocalizations.of(context).language,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -63,10 +67,10 @@ class CountdaownCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        counter('14', 'Days'),
-                        counter('15', 'Hours'),
-                        counter('16', 'Minuts'),
-                        counter('17', 'Seconds'),
+                        counter('14', AppLocalizations.of(context).days),
+                        counter('15', AppLocalizations.of(context).hours),
+                        counter('16', AppLocalizations.of(context).minuts),
+                        counter('17', AppLocalizations.of(context).seconds),
                       ],
                     ),
                   ),
