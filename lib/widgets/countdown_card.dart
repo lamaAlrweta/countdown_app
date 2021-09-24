@@ -2,8 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class CountdaownCard extends StatelessWidget {
+  //use "gradient" instead of repeating the code
+  final Gradient _gradient = LinearGradient(
+    colors: [
+      Color.fromRGBO(75, 83, 228, 1).withOpacity(0.5),
+      Color.fromRGBO(113, 90, 206, 1).withOpacity(0.5)
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +24,9 @@ class CountdaownCard extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 132,
-          color: Theme.of(context).primaryColor.withOpacity(0.4),
+          decoration: BoxDecoration(
+            gradient: _gradient,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -25,18 +36,23 @@ class CountdaownCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
+                      decoration: BoxDecoration(
+                        gradient: _gradient,
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                       width: 46,
                       height: 46,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                        right: 8,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          
                           Text(
-                            AppLocalizations.of(context).language,
+                            AppLocalizations.of(context)!.language,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -60,17 +76,27 @@ class CountdaownCard extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  color: Theme.of(context).primaryColor,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(75, 83, 228, 1),
+                        Color.fromRGBO(113, 90, 206, 1)
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8, right: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        counter('14', AppLocalizations.of(context).days),
-                        counter('15', AppLocalizations.of(context).hours),
-                        counter('16', AppLocalizations.of(context).minuts),
-                        counter('17', AppLocalizations.of(context).seconds),
+                        counter('14', AppLocalizations.of(context)!.days),
+                        counter('15', AppLocalizations.of(context)!.hours),
+                        counter('16', AppLocalizations.of(context)!.minuts),
+                        counter('17', AppLocalizations.of(context)!.seconds),
                       ],
                     ),
                   ),

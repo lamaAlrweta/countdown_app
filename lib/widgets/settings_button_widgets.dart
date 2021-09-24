@@ -1,14 +1,16 @@
+import 'package:countdown/provider/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class SettingsButtons extends StatefulWidget {
-  final String textonTop;
-  final Function() function1;
-  final Function() function2;
-  final String buttonName1;
-  final String buttonName2;
-  final double height;
-  final double width;
+  final String? textonTop;
+  final Function()? function1;
+  final Function()? function2;
+  final String? buttonName1;
+  final String? buttonName2;
+  final double? height;
+  final double? width;
   final font;
   final colorButton;
 
@@ -29,8 +31,8 @@ class SettingsButtons extends StatefulWidget {
 }
 
 class _SettingsButtonsState extends State<SettingsButtons> {
-  bool turnOnButton;
-  bool thirdButton;
+  bool? turnOnButton;
+  bool? thirdButton;
   @override
   void initState() {
     super.initState();
@@ -39,12 +41,14 @@ class _SettingsButtonsState extends State<SettingsButtons> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
+    final locale = provider.getLocale ?? Locale('en');
     return Container(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             //textDirection: TextDirection.ltr,
             children: [
           Text(
-            widget.textonTop,
+            widget.textonTop ?? "title",
             style: TextStyle(
               fontFamily: 'Montserrat-Arabic',
             ),
@@ -57,8 +61,16 @@ class _SettingsButtonsState extends State<SettingsButtons> {
                 Flexible(
                   child: RaisedButton(
                     onPressed: () {
+                      final provider =
+                          Provider.of<LocaleProvider>(context, listen: false);
+                      
+                      
+
                       setState(() {
-                        turnOnButton = !turnOnButton;
+                        provider.setLocaleAr(Locale('ar'));
+                        // provider.setLocaleAr();
+                        turnOnButton = !turnOnButton!;
+                        
                       });
                     },
                     shape: RoundedRectangleBorder(
@@ -88,7 +100,7 @@ class _SettingsButtonsState extends State<SettingsButtons> {
                             BoxConstraints(maxWidth: 183.0, minHeight: 60.0),
                         alignment: Alignment.center,
                         child: Text(
-                          widget.buttonName1,
+                          widget.buttonName1 ?? 'name1',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -105,7 +117,8 @@ class _SettingsButtonsState extends State<SettingsButtons> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      turnOnButton = !turnOnButton;
+                      provider.setLocaleAr(Locale('en'));
+                      turnOnButton = !turnOnButton!;
                     });
                   },
                   shape: RoundedRectangleBorder(
@@ -135,7 +148,7 @@ class _SettingsButtonsState extends State<SettingsButtons> {
                           BoxConstraints(maxWidth: 183.0, minHeight: 60.0),
                       alignment: Alignment.center,
                       child: Text(
-                        widget.buttonName2,
+                        widget.buttonName2 ?? "name2",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

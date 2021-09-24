@@ -6,4 +6,6 @@ class L10n {
     const Locale('ar'),
 
   ];
+ // Locale get languageCodeEn => L10n.all.first ;
+ // Locale get languageCodeAr => L10n.all.last ;
 }

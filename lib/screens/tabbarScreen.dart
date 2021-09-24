@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/setting_screen.dart';
 import '../widgets/customized_appbar.dart';
+import '../provider/locale_provider.dart';
 
 class TabBarScreen extends StatefulWidget {
   @override
@@ -12,28 +14,34 @@ class TabBarScreen extends StatefulWidget {
 }
 
 class _TabBarScreenState extends State<TabBarScreen> {
-  List<Map<String, Object>> _pages;
+   late List<Map<String, Object>> _pages;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      Duration.zero,
-      () {
-        _pages = [
-          {
-            'page': HomeScreen(),
-            'title': '${AppLocalizations.of(context).countdowns}',
-            'hint': '${AppLocalizations.of(context).homeDescription}',
-          },
-          {
-            'page': SettingsScreen(),
-            'title': '${AppLocalizations.of(context).settings}',
-            'hint': '${AppLocalizations.of(context).settingsdescription}',
-          },
-        ];
-      },
-    );
+    
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      final provider = Provider.of<LocaleProvider>(context, listen: false);
+       _pages = [
+        {
+          'page': HomeScreen(),
+          'title': '${AppLocalizations.of(context)!.countdowns}',
+          'hint': '${AppLocalizations.of(context)!.homeDescription}',
+        },
+        {
+          'page': SettingsScreen(),
+          'title': '${AppLocalizations.of(context)!.settings}',
+          'hint': '${AppLocalizations.of(context)!.settingsdescription}',
+        },
+      ];
+     
+
+      provider.clearLocale();
+    });
+    // Future.delayed(
+    //   Duration.zero,
+    //   () {},
+    // );
   }
 
   int _selectedpageIndex = 0;
@@ -66,7 +74,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
           child: const Icon(Icons.add),
         ),
       ),
-      body: _pages[_selectedpageIndex]['page'],
+      body: _pages[_selectedpageIndex]['page'] as Widget,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: Theme(
         data: ThemeData(
