@@ -15,10 +15,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool? turnOnButton;
   bool? thirdButton;
   @override
-  void initState() {
-    super.initState();
-    turnOnButton = false;
-  }
+  // void initState() {
+  //   super.initState();
+  //   turnOnButton = false;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SettingsButtons(
                   textonTop: AppLocalizations.of(context)!.language,
-                //   function1: () {
-                //  provider.setLocaleAr(Locale('ar'));
-                //   },
-                  // function2: () {
-                  //   provider.setLocaleAr(Locale('en'));
-                  // },
+                  function1: () {
+                    setState(() {
+                      provider.setLocaleAr(Locale('en'));
+                    });
+                  },
+                  function2: () {
+                      setState(() {
+                       provider.setLocaleAr(Locale('ar'));
+                    });
+                   
+                  },
                   buttonName1: AppLocalizations.of(context)!.arabic,
                   buttonName2: AppLocalizations.of(context)!.english,
                   height: 60,
