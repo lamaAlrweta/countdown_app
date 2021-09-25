@@ -12,7 +12,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool? turnOnButton;
+ // bool? turnOnButton;
   bool? thirdButton;
   @override
   // void initState() {
@@ -24,7 +24,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     //  final l10n = Provider.of<L10n>(context);
     final provider = Provider.of<LocaleProvider>(context);
-    final locale = Localizations.localeOf(context);
+    //final locale = Localizations.localeOf(context);
+    var translation = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: Scaffold(
@@ -37,7 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 25,
                 ),
                 SettingsButtons(
-                  textonTop: AppLocalizations.of(context)!.language,
+                  textonTop: translation.language,
                   function1: () {
                     setState(() {
                       provider.setLocaleAr(Locale('en'));
@@ -49,8 +50,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     });
                    
                   },
-                  buttonName1: AppLocalizations.of(context)!.arabic,
-                  buttonName2: AppLocalizations.of(context)!.english,
+                  buttonName1: translation.arabic,
+                  buttonName2: translation.english,
                   height: 60,
                   width: 110,
                 ),
@@ -58,11 +59,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 25,
                 ),
                 SettingsButtons(
-                  textonTop: AppLocalizations.of(context)!.theme,
+                  textonTop: translation.theme,
                   // function1: () {},
                   // function2: () {},
-                  buttonName1: AppLocalizations.of(context)!.light,
-                  buttonName2: AppLocalizations.of(context)!.dark,
+                  buttonName1: translation.light,
+                  buttonName2: translation.dark,
                   height: 60,
                   width: 110,
                   font: FontWeight.w600,
@@ -71,11 +72,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 25,
                 ),
                 SettingsButtons(
-                  textonTop: AppLocalizations.of(context)!.ourTeam,
+                  textonTop: translation.ourTeam,
                   // function1: () {},
                   // function2: () {},
-                  buttonName1: AppLocalizations.of(context)!.lama,
-                  buttonName2: AppLocalizations.of(context)!.afaf,
+                  buttonName1: translation.lama,
+                  buttonName2: translation.afaf,
                   height: 50,
                   width: 110,
                   font: FontWeight.normal,

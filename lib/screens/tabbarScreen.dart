@@ -14,27 +14,15 @@ class TabBarScreen extends StatefulWidget {
 }
 
 class _TabBarScreenState extends State<TabBarScreen> {
-   late List<Map<String, Object>> _pages;
+  late List<Map<String, Object>> _pages;
 
   @override
   void initState() {
     super.initState();
-    
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       final provider = Provider.of<LocaleProvider>(context, listen: false);
-       _pages = [
-        {
-          'page': HomeScreen(),
-          'title': '${AppLocalizations.of(context)!.countdowns}',
-          'hint': '${AppLocalizations.of(context)!.homeDescription}',
-        },
-        {
-          'page': SettingsScreen(),
-          'title': '${AppLocalizations.of(context)!.settings}',
-          'hint': '${AppLocalizations.of(context)!.settingsdescription}',
-        },
-      ];
-     
+   
 
       provider.clearLocale();
     });
@@ -54,11 +42,26 @@ class _TabBarScreenState extends State<TabBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var translation = AppLocalizations.of(context)!;
+       _pages = [
+        {
+          'page': HomeScreen(),
+          'title': '${translation.countdowns}',
+          'hint': '${translation.homeDescription}',
+        },
+        {
+          'page': SettingsScreen(),
+          'title': '${translation.settings}',
+          'hint': '${translation.settingsdescription}',
+        },
+      ];
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
-        child: CustomAppbar(_pages[_selectedpageIndex]['title'],
-            _pages[_selectedpageIndex]['hint']),
+        child: CustomAppbar(
+          _pages[_selectedpageIndex]['title'],
+          _pages[_selectedpageIndex]['hint'],
+        ),
       ),
       floatingActionButton: Theme(
         data: ThemeData(
