@@ -29,8 +29,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
+          body: SingleChildScrollView(
+        child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
