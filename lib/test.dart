@@ -12,7 +12,7 @@ class _State extends State<Test> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Flutter Tutorial'),
+          title: Text('Test'),
         ),
         body: Center(child: RaisedButton(onPressed: () {
           showModalBottomSheet<dynamic>(

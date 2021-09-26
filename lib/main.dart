@@ -37,10 +37,11 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(113, 90, 206, 1),
         shadowColor: Color.fromRGBO(113, 90, 206, 1),
         scaffoldBackgroundColor: Color.fromRGBO(22, 30, 41, 1),
-        // scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
+        cardColor: Color.fromRGBO(102, 111, 126, 1),
         backgroundColor: Color.fromRGBO(34, 46, 62, 1),
         //second color of card
         accentColor: Color.fromRGBO(75, 83, 228, 1),
+
         buttonTheme: ButtonTheme.of(context).copyWith(
           buttonColor: Color.fromRGBO(34, 46, 62, 1),
           textTheme: ButtonTextTheme.primary,
