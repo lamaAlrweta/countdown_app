@@ -1,14 +1,22 @@
+import 'package:countdown/provider/locale_provider.dart';
+import 'package:flutter/services.dart';
 import 'package:countdown/screens/tabbarScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
-import 'l10n/l10n.dart';
+import '../screens/tabbarScreen.dart';
+import '../l10n/l10n.dart';
 import 'screens/modal_bottom_sheet_screen.dart';
-import 'screens/tabbarScreen.dart';
-import 'test.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(MyApp());
 }
 
