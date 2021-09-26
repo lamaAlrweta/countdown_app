@@ -51,22 +51,10 @@ class CountdaownCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)!.language,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat-Arabic',
-                            ),
-                          ),
-                          Text(
-                            'Sep 19, 2021',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Montserrat-Arabic',
-                            ),
-                          ),
+                          Text(AppLocalizations.of(context)!.language,
+                              style: Theme.of(context).textTheme.title),
+                          Text('Sep 19, 2021',
+                              style: Theme.of(context).textTheme.body1),
                         ],
                       ),
                     )
@@ -129,18 +117,11 @@ class counter extends StatelessWidget {
           children: [
             Text(
               num,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Montserrat-Arabic'),
+              style: Theme.of(context).textTheme.title,
             ),
             Text(
               numKey,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat-Arabic',
-              ),
+              style: Theme.of(context).textTheme.title,
             ),
           ],
         ),

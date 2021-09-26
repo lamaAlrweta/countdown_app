@@ -57,6 +57,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
       ];
     return Scaffold(
       appBar: PreferredSize(
+      
         preferredSize: Size.fromHeight(100),
         child: CustomAppbar(
           _pages[_selectedpageIndex]['title'],
@@ -85,7 +86,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
           highlightColor: Colors.transparent,
         ),
         child: BottomNavigationBar(
-          elevation: 10,
+          
           backgroundColor: Theme.of(context).backgroundColor,
           unselectedItemColor: Colors.grey,
           selectedItemColor: Theme.of(context).primaryColor,

@@ -41,7 +41,7 @@ class _SettingsButtonsState extends State<SettingsButtons> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LocaleProvider>(context, listen: false);
+   // final provider = Provider.of<LocaleProvider>(context, listen: false);
     final contrller = context.watch<LocaleProvider>();
 
     if (contrller.getLocale == Locale('ar')) {

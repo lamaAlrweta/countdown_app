@@ -1,3 +1,4 @@
+import 'package:countdown/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     //  final l10n = Provider.of<L10n>(context);
     final provider = Provider.of<LocaleProvider>(context);
+     final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
     //final locale = Localizations.localeOf(context);
     var translation = AppLocalizations.of(context)!;
 
@@ -41,12 +43,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   textonTop: translation.language,
                   function1: () {
                     setState(() {
-                      provider.setLocaleAr(Locale('en'));
+                      provider.setLocale(Locale('en'));
                     });
                   },
                   function2: () {
                       setState(() {
-                       provider.setLocaleAr(Locale('ar'));
+                       provider.setLocale(Locale('ar'));
                     });
                    
                   },
@@ -60,8 +62,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SettingsButtons(
                   textonTop: translation.theme,
-                  // function1: () {},
-                  // function2: () {},
+                   function1: () {
+                      setState(() {
+                        themeprovider.toggleTheme(true);
+                    });
+                   },
+                   function2: () {
+                      setState(() {
+                        themeprovider.toggleTheme(false);
+                    });
+                   },
                   buttonName1: translation.light,
                   buttonName2: translation.dark,
                   height: 60,

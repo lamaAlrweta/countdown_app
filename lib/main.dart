@@ -22,13 +22,23 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LocaleProvider(),
-        builder: (context, child) {
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LocaleProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+        )
+      ],
+      child: Consumer<LocaleProvider>(
+        builder: (context, child, _) {
           final provider = Provider.of<LocaleProvider>(context);
+          final themeProvider = Provider.of<ThemeProvider>(context);
 
           return MaterialApp(
-            // themeMode: themeProvider.themeMode,
+            themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
             debugShowCheckedModeBanner: false,
@@ -74,5 +84,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-      );
+      ),
+    );
+  }
 }
