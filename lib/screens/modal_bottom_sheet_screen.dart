@@ -1,34 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import '../widgets/modal_bottom_sheet.dart';
 
+// ignore: camel_case_types
 class modalBottomSheetScreen extends StatefulWidget {
-  final String title;
-  final String emoji;
-  final DateTime datePicker;
-  final DateTime TimePicker;
-  final String notes;
+  String? title;
+  String? emoji;
+  String? datepicker;
+  String? timepicker;
+  String? notes;
 
   modalBottomSheetScreen({
-    Key key,
+    // Key key,
     this.title,
     this.emoji,
-    this.datePicker,
-    this.TimePicker,
+    this.datepicker,
+    this.timepicker,
     this.notes,
-  }) : super(key: key);
+  });
+  // : super(key: key);
   @override
   _modalBottomSheetScreenState createState() => _modalBottomSheetScreenState();
 }
 
+// ignore: camel_case_types
 class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
   String _date = "Not set";
   String _time = "Not set";
+  late final bool isEmojiVisible;
+  late final bool isKeyboardVisible;
+  final focusNode = FocusNode();
+  late final Function onBlurred;
 
   final TextEditingController textEditingController1 = TextEditingController();
   final TextEditingController textEditingController2 = TextEditingController();
+  final TextEditingController textEditingControllerEmoji =
+      TextEditingController();
 
   DateTime dateTime = DateTime.now();
 
@@ -81,7 +91,7 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
           containerHeight: 210.0,
         ),
         showTitleActions: true, onConfirm: (time) {
-      _time = '${time.hour}:${time.minute}';
+      _time = '${time.hour}:${time.minute}:${time.second}';
       setState(() {
         textEditingController2.text = "$_time".toString();
       });
@@ -89,10 +99,11 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
   }
 
   Widget addCancelButton(
-    String Buttontext,
+    String buttontext,
     textAlign,
     textColor,
     backgroundColor,
+    onPressedFuncation,
   ) {
     return Align(
       alignment: textAlign,
@@ -103,19 +114,12 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(4.0),
           ),
-          child: Text(Buttontext,
+          child: Text(buttontext,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontFamily: 'Montserrat-Arabic',
               )),
-          onPressed: Buttontext == 'add'
-              ? () {
-                  if (!_formKey.currentState.validate()) {
-                    return;
-                  }
-                  _formKey.currentState.save();
-                }
-              : () => Navigator.pop(context, false),
+          onPressed: onPressedFuncation,
           color: backgroundColor,
           textColor: textColor,
           elevation: 0,
@@ -124,7 +128,7 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
     );
   }
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -133,7 +137,7 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,68 +146,133 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
                       'Add',
                       Alignment.topRight,
                       Theme.of(context).accentColor,
-                      Theme.of(context).primaryColor.withOpacity(0.4)),
+                      Theme.of(context).primaryColor.withOpacity(0.4), () {
+                    if (!formKey.currentState!.validate()) {
+                      return;
+                    }
+                    formKey.currentState!.save();
+                    print(widget.title);
+                    print(widget.emoji);
+                    print(widget.timepicker);
+                    print(widget.datepicker);
+                    print(widget.notes);
+                  }),
                   addCancelButton(
                       'Cancel',
                       Alignment.topLeft,
                       Theme.of(context).cardColor,
-                      Theme.of(context).backgroundColor),
+                      Theme.of(context).backgroundColor,
+                      () => Navigator.pop(context, false)),
                   SizedBox(
-                    height: 80,
+                    height: 50,
                   ),
                   modalBottomSheet(
-                    userInput: widget.title,
+                    // title: widget.title,
                     buttonFeild: 'Title',
                     buttonHinit: 'Ex: My friend birthday',
                     buttonKeyboardType: TextInputType.text,
                     butonColor: Theme.of(context).backgroundColor,
+                    vaildators: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Feild is Required';
+                      }
+
+                      return null;
+                    },
+                    onSaveds: (String? value) {
+                      widget.title = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   modalBottomSheet(
-                    userInput: widget.emoji,
+                    // emoji: widget.emoji,
                     buttonFeild: 'Emoji',
                     buttonHinit: 'Enter an emoji',
                     buttonKeyboardType: TextInputType.text,
+                    textEditingController: textEditingControllerEmoji,
                     butonColor: Theme.of(context).backgroundColor,
+                    vaildators: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Feild is Required';
+                      }
+
+                      return null;
+                    },
+                    onSaveds: (String? value) {
+                      widget.emoji = value;
+                    },
+
+                    // iconButtonFuncation: buildEmoji,
+                    icon: Icons.emoji_emotions_outlined,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   modalBottomSheet(
-                    userInput: widget.datePicker.toString(),
+                    // datepicker: widget.datepicker,
                     buttonFeild: 'Date',
                     buttonHinit: 'Mar 19,2022',
                     textEditingController: textEditingController1,
                     buttonKeyboardType: TextInputType.datetime,
-                    IconButtonFuncation: () => datePicker(),
+                    iconButtonFuncation: () => datePicker(),
                     butonColor: Theme.of(context).backgroundColor,
                     icon: Icons.calendar_today,
+                    vaildators: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Feild is Required';
+                      }
+
+                      return null;
+                    },
+                    onSaveds: (String? value) {
+                      widget.datepicker = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   modalBottomSheet(
-                    userInput: widget.TimePicker.toString(),
+                    // timepicker: widget.timepicker,
                     buttonFeild: 'Time',
                     buttonHinit: '9:00 am',
                     textEditingController: textEditingController2,
-                    IconButtonFuncation: () => timePicker(),
+                    iconButtonFuncation: () => timePicker(),
                     buttonKeyboardType: TextInputType.datetime,
                     butonColor: Theme.of(context).backgroundColor,
                     icon: Icons.access_time_sharp,
+                    vaildators: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Feild is Required';
+                      }
+
+                      return null;
+                    },
+                    onSaveds: (String? value) {
+                      widget.timepicker = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   modalBottomSheet(
-                    userInput: widget.notes,
+                    // notes: widget.notes,
                     buttonFeild: 'Notes',
                     buttonHinit: 'To Do list',
                     buttonKeyboardType: TextInputType.multiline,
-                    maxLine: 5,
+                    maxLine: 4,
                     butonColor: Theme.of(context).primaryColor.withOpacity(0.4),
+                    // vaildators: (String? value) {
+                    //   if (value!.isEmpty) {
+                    //     return 'Feild is Required';
+                    //   }
+
+                    //   return null;
+                    // },
+                    onSaveds: (String? value) {
+                      widget.notes = value;
+                    },
                   ),
                 ],
               ),

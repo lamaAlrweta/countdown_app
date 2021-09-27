@@ -12,7 +12,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
- // bool? turnOnButton;
+  // bool? turnOnButton;
   bool? thirdButton;
   @override
   // void initState() {
@@ -29,8 +29,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return SafeArea(
       child: Scaffold(
-          body: SingleChildScrollView(
-        child: Padding(
+        body: SingleChildScrollView(
+          child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
@@ -45,10 +45,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     });
                   },
                   function2: () {
-                      setState(() {
-                       provider.setLocaleAr(Locale('ar'));
+                    setState(() {
+                      provider.setLocaleAr(Locale('ar'));
                     });
-                   
                   },
                   buttonName1: translation.arabic,
                   buttonName2: translation.english,

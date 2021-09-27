@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 
 class modalBottomSheet extends StatefulWidget {
-  String userInput;
-  final String buttonFeild;
-  final String buttonHinit;
+  final String? buttonFeild;
+  final String? buttonHinit;
   final buttonKeyboardType;
   final contentPaddingText;
   final icon;
   final butonColor;
-  final IconButtonFuncation;
+  final iconButtonFuncation;
   final maxLine;
   final textEditingController;
-  final vaildators;
   final onSaveds;
+  final vaildators;
 
   modalBottomSheet({
-    this.userInput,
     this.buttonFeild,
     this.buttonHinit,
     this.buttonKeyboardType,
     this.contentPaddingText,
     this.icon,
     this.butonColor,
-    this.IconButtonFuncation,
+    this.iconButtonFuncation,
     this.maxLine,
     this.textEditingController,
-    this.vaildators,
     this.onSaveds,
+    this.vaildators,
   });
   @override
   _modalBottomSheetState createState() => _modalBottomSheetState();
@@ -45,7 +43,7 @@ class _modalBottomSheetState extends State<modalBottomSheet> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              widget.buttonFeild,
+              widget.buttonFeild ?? 'text',
               style: TextStyle(
                 color: Theme.of(context).textSelectionColor,
                 fontSize: 12,
@@ -62,7 +60,7 @@ class _modalBottomSheetState extends State<modalBottomSheet> {
             maxLines: widget.maxLine,
             decoration: InputDecoration(
               suffixIcon: IconButton(
-                  onPressed: widget.IconButtonFuncation,
+                  onPressed: widget.iconButtonFuncation,
                   icon: Icon(
                     widget.icon,
                     color: Colors.white,
@@ -86,21 +84,11 @@ class _modalBottomSheetState extends State<modalBottomSheet> {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            validator: (String value) {
-              if (value.isEmpty) {
-                return 'Feild is Required';
-              }
-
-              return null;
-            },
-            onSaved: (String value) {
-              widget.userInput = value;
-              print(value);
-            },
+            validator: widget.vaildators,
+            onSaved: widget.onSaveds,
           ),
         ],
       ),
-      // ),
     );
   }
 }
