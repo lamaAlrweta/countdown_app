@@ -28,7 +28,7 @@ class MyThemes {
     textTheme: TextTheme(
       title: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.bold,
         color: Color.fromRGBO(255, 255, 255, 1),
         fontFamily: 'Montserrat-Arabic',
       ),
@@ -42,14 +42,13 @@ class MyThemes {
     // .apply(headlin1: Colors.white, displayColor: Colors.white)
     ,
     fontFamily: 'Montserrat-Arabic',
-    textSelectionColor: Color.fromRGBO(198, 199, 200, 1),
+    textSelectionColor: Color.fromRGBO(255, 255, 255, 1),
     //HintColor
     hintColor: Color.fromRGBO(73, 90, 114, 1),
     //card color
     primaryColor: Color.fromRGBO(113, 90, 206, 1),
 
     scaffoldBackgroundColor: Color.fromRGBO(22, 30, 41, 1),
-    // scaffoldBackgroundColor: Color.fromRGBO(0, 22, 30, 41),
     backgroundColor: Color.fromRGBO(34, 46, 62, 1),
     //second color of card
     accentColor: Color.fromRGBO(75, 83, 228, 1),
@@ -59,11 +58,7 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    //  appBarTheme: AppBarTheme(
-    //    textTheme:TextTheme(
-
-    //    )
-    //  ),
+    
     textTheme: TextTheme(
       title: TextStyle(
         color: Color.fromRGBO(22, 30, 41, 1),
@@ -74,18 +69,16 @@ class MyThemes {
       body1: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
-        color: Color.fromRGBO(117, 123, 158, 1),
+        color: Color.fromRGBO(47, 62, 84, 1),
         fontFamily: 'Montserrat-Arabic',
       ),
-      // body1:
+    
     ),
-    //  textTheme: Theme.of(context)
-    //               .textTheme
-    //               .apply(bodyColor: Colors.white, displayColor: Colors.white),
+    
     fontFamily: 'Montserrat-Arabic',
     textSelectionColor: Color.fromRGBO(22, 30, 41, 1),
     //HintColor
-    hintColor: Color.fromRGBO(117, 123, 158, 1),
+    hintColor: Color.fromRGBO(47, 62, 84, 1),
     //card color
     primaryColor: Color.fromRGBO(113, 90, 206, 1),
 
@@ -94,8 +87,6 @@ class MyThemes {
     backgroundColor: Color.fromRGBO(255, 255, 255, 1),
     //second color of card
     accentColor: Color.fromRGBO(75, 83, 228, 1),
-    // buttonTheme: ButtonTheme.of(context).copyWith(
-    //   buttonColor: Color.fromRGBO(34, 46, 62, 1),
-    //   textTheme: ButtonTextTheme.primary,
+  
   );
 }

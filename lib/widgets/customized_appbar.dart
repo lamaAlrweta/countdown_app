@@ -20,14 +20,15 @@ class CustomAppbar extends StatelessWidget {
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Montserrat-Arabic',
+                color: Theme.of(context).textSelectionColor
               ),
             ),
             Expanded(
               child: Text(
                 hint,
-                style: TextStyle(
-                  fontFamily: 'Montserrat-Arabic',
-                ),
+                
+                style: Theme.of(context).textTheme.body1
+               
               ),
             ),
           ],

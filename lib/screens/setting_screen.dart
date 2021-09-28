@@ -1,11 +1,11 @@
-import 'package:countdown/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/settings_button_widgets.dart';
 import '../provider/locale_provider.dart';
-import '../l10n/l10n.dart';
+import '../provider/theme_provider.dart';
+
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -13,34 +13,25 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  // bool? turnOnButton;
   bool? thirdButton;
   @override
-  // void initState() {
-  //   super.initState();
-  //   turnOnButton = false;
-  // }
+ 
 
   @override
   Widget build(BuildContext context) {
     bool? turnOnButton;
-        bool? turnOnButton2;
+    bool? turnOnButton2;
 
-
-    //  final l10n = Provider.of<L10n>(context);
-    final provider = Provider.of<LocaleProvider>(context);
+    final provider = Provider.of<LocaleProvider>(context, listen: false);
     final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
-    //final locale = Localizations.localeOf(context);
     var translation = AppLocalizations.of(context)!;
-    final contrller = context.watch<LocaleProvider>();
 
-    if (contrller.getLocale == Locale('ar')) {
+    if (provider.getLocale == Locale('ar')) {
       turnOnButton = true;
     } else
       turnOnButton = false;
 
-
-      if (themeprovider.getThememode == ThemeMode.light ) {
+    if (themeprovider.getThememode == ThemeMode.light) {
       turnOnButton2 = true;
     } else
       turnOnButton2 = false;
@@ -67,20 +58,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       provider.setLocale(Locale('ar'));
                     });
                   },
-                  //  buttonName1: translation.arabic,
-                 // buttonName2: translation.english,
-                  // height: 60,
-                  // width: 110,
                   gradientcontainer: GradientContainer(
                     turnOnButton: turnOnButton,
                     buttonName1: translation.arabic,
                   ),
                   gradientcontainer2: GradientContainer2(
                     turnOnButton: turnOnButton,
-                    buttonName1: translation.english,
+                    buttonName: translation.english,
                   ),
                 ),
-
                 SizedBox(
                   height: 25,
                 ),
@@ -96,18 +82,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       themeprovider.toggleTheme(false);
                     });
                   },
-                  buttonName1: translation.light,
-                  buttonName2: translation.dark,
-                   gradientcontainer: GradientContainer(
+                  gradientcontainer: GradientContainer(
                     turnOnButton: turnOnButton2,
                     buttonName1: translation.light,
                   ),
                   gradientcontainer2: GradientContainer2(
                     turnOnButton: turnOnButton2,
-                    buttonName1: translation.dark,
+                    buttonName: translation.dark,
                   ),
-                  // height: 60,
-                  // width: 110,
                 ),
                 SizedBox(
                   height: 25,
@@ -116,17 +98,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   textonTop: translation.ourTeam,
                   // function1: () {},
                   // function2: () {},
-                  // buttonName1: translation.lama,
-                  // buttonName2: translation.afaf,
-                  // height: 50,
-                  // width: 110,
-                   gradientcontainer: GradientContainer(
+                  gradientcontainer: GradientContainer(
                     turnOnButton: false,
                     buttonName1: translation.lama,
                   ),
                   gradientcontainer2: GradientContainer2(
                     turnOnButton: true,
-                    buttonName1: translation.afaf,
+                    buttonName: translation.afaf,
                   ),
                 ),
               ],
@@ -172,7 +150,7 @@ class GradientContainer extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: 183.0, minHeight: 60.0),
         alignment: Alignment.center,
         child: Text(
-          buttonName1 ?? 'name1',
+          buttonName1 ?? 'name',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.title,
         ),
@@ -184,25 +162,25 @@ class GradientContainer extends StatelessWidget {
 class GradientContainer2 extends StatelessWidget {
   const GradientContainer2({
     required this.turnOnButton,
-    required this.buttonName1,
+    required this.buttonName,
   });
 
   final bool? turnOnButton;
-  final String? buttonName1;
+  final String? buttonName;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: turnOnButton == false
+          colors: turnOnButton == true
               ? [
-                  Color.fromRGBO(75, 83, 228, 1),
-                  Color.fromRGBO(113, 90, 206, 1)
+                  Theme.of(context).backgroundColor,
+                  Theme.of(context).backgroundColor,
                 ]
               : [
-                  Theme.of(context).backgroundColor,
-                  Theme.of(context).backgroundColor,
+                  Color.fromRGBO(75, 83, 228, 1),
+                  Color.fromRGBO(113, 90, 206, 1)
                 ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -215,7 +193,7 @@ class GradientContainer2 extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: 183.0, minHeight: 60.0),
         alignment: Alignment.center,
         child: Text(
-          buttonName1 ?? 'name1',
+          buttonName ?? 'name',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.title,
         ),
@@ -223,5 +201,3 @@ class GradientContainer2 extends StatelessWidget {
     );
   }
 }
-
-
