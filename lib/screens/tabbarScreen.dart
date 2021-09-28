@@ -1,3 +1,4 @@
+import 'package:countdown/screens/modal_bottom_sheet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,7 +23,6 @@ class _TabBarScreenState extends State<TabBarScreen> {
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       final provider = Provider.of<LocaleProvider>(context, listen: false);
-   
 
       provider.clearLocale();
     });
@@ -43,18 +43,18 @@ class _TabBarScreenState extends State<TabBarScreen> {
   @override
   Widget build(BuildContext context) {
     var translation = AppLocalizations.of(context)!;
-       _pages = [
-        {
-          'page': HomeScreen(),
-          'title': '${translation.countdowns}',
-          'hint': '${translation.homeDescription}',
-        },
-        {
-          'page': SettingsScreen(),
-          'title': '${translation.settings}',
-          'hint': '${translation.settingsdescription}',
-        },
-      ];
+    _pages = [
+      {
+        'page': HomeScreen(),
+        'title': '${translation.countdowns}',
+        'hint': '${translation.homeDescription}',
+      },
+      {
+        'page': SettingsScreen(),
+        'title': '${translation.settings}',
+        'hint': '${translation.settingsdescription}',
+      },
+    ];
     return Scaffold(
       appBar: PreferredSize(
       
@@ -72,8 +72,13 @@ class _TabBarScreenState extends State<TabBarScreen> {
         child: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.4),
           onPressed: () {
-            // Add your onPressed code here!
-            //  Navigator.push(context, )
+            showModalBottomSheet<dynamic>(
+              isScrollControlled: true,
+              context: context,
+              builder: (context) => Container(
+                  height: MediaQuery.of(context).size.height * 0.90,
+                  child: modalBottomSheetScreen()),
+            );
           },
           child: const Icon(Icons.add),
         ),
