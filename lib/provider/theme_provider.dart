@@ -12,12 +12,16 @@ class ThemeProvider extends ChangeNotifier {
   //     return themeMode == ThemeMode.dark;
   //   }
   // }
+  ThemeMode get getThememode {
+  return themeMode;
+}
 
   void toggleTheme(bool isOn) {
     themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
+
 
 class MyThemes {
   static final darkTheme = ThemeData(
