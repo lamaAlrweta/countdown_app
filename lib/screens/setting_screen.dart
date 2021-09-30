@@ -152,7 +152,7 @@ class GradientContainer extends StatelessWidget {
         child: Text(
           buttonName1 ?? 'name',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
     );
@@ -195,7 +195,7 @@ class GradientContainer2 extends StatelessWidget {
         child: Text(
           buttonName ?? 'name',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
     );

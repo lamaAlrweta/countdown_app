@@ -1,3 +1,5 @@
+import 'package:countdown/widgets/countdown_card.dart';
+import 'package:countdown/widgets/test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,8 +34,6 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
   String _time = "Not set";
   late final bool isEmojiVisible;
   late final bool isKeyboardVisible;
-  final focusNode = FocusNode();
-  late final Function onBlurred;
 
   final TextEditingController textEditingController1 = TextEditingController();
   final TextEditingController textEditingController2 = TextEditingController();
@@ -133,14 +133,13 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Form(
               key: formKey,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   addCancelButton(
                       'Add',
@@ -148,7 +147,11 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
                       Theme.of(context).accentColor,
                       Theme.of(context).primaryColor.withOpacity(0.4), () {
                     if (!formKey.currentState!.validate()) {
-                      return;
+                      return () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DateCountDown(widget.datepicker)));
                     }
                     formKey.currentState!.save();
                     print(widget.title);
@@ -156,123 +159,133 @@ class _modalBottomSheetScreenState extends State<modalBottomSheetScreen> {
                     print(widget.timepicker);
                     print(widget.datepicker);
                     print(widget.notes);
+                    // () => Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => MyApp2()));
                   }),
                   addCancelButton(
-                      'Cancel',
-                      Alignment.topLeft,
-                      Theme.of(context).cardColor,
-                      Theme.of(context).backgroundColor,
-                      () => Navigator.pop(context, false)),
-                  SizedBox(
-                    height: 50,
+                    'Cancel',
+                    Alignment.topLeft,
+                    Theme.of(context).cardColor,
+                    Theme.of(context).backgroundColor,
+                    () => Navigator.pop(context, false),
                   ),
-                  modalBottomSheet(
-                    // title: widget.title,
-                    buttonFeild: 'Title',
-                    buttonHinit: 'Ex: My friend birthday',
-                    buttonKeyboardType: TextInputType.text,
-                    butonColor: Theme.of(context).backgroundColor,
-                    vaildators: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Feild is Required';
-                      }
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 50,
+                      ),
+                      modalBottomSheet(
+                        // title: widget.title,
+                        buttonFeild: 'Title',
+                        buttonHinit: 'Ex: My friend birthday',
+                        buttonKeyboardType: TextInputType.text,
+                        butonColor: Theme.of(context).backgroundColor,
+                        vaildators: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Feild is Required';
+                          }
 
-                      return null;
-                    },
-                    onSaveds: (String? value) {
-                      widget.title = value;
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  modalBottomSheet(
-                    // emoji: widget.emoji,
-                    buttonFeild: 'Emoji',
-                    buttonHinit: 'Enter an emoji',
-                    buttonKeyboardType: TextInputType.text,
-                    textEditingController: textEditingControllerEmoji,
-                    butonColor: Theme.of(context).backgroundColor,
-                    vaildators: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Feild is Required';
-                      }
+                          return null;
+                        },
+                        onSaveds: (String? value) {
+                          widget.title = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      modalBottomSheet(
+                        // emoji: widget.emoji,
+                        buttonFeild: 'Emoji',
+                        buttonHinit: 'Enter an emoji',
+                        buttonKeyboardType: TextInputType.text,
+                        textEditingController: textEditingControllerEmoji,
+                        butonColor: Theme.of(context).backgroundColor,
+                        vaildators: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Feild is Required';
+                          }
 
-                      return null;
-                    },
-                    onSaveds: (String? value) {
-                      widget.emoji = value;
-                    },
+                          return null;
+                        },
+                        onSaveds: (String? value) {
+                          widget.emoji = value;
+                        },
 
-                    // iconButtonFuncation: buildEmoji,
-                    icon: Icons.emoji_emotions_outlined,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  modalBottomSheet(
-                    // datepicker: widget.datepicker,
-                    buttonFeild: 'Date',
-                    buttonHinit: 'Mar 19,2022',
-                    textEditingController: textEditingController1,
-                    buttonKeyboardType: TextInputType.datetime,
-                    iconButtonFuncation: () => datePicker(),
-                    butonColor: Theme.of(context).backgroundColor,
-                    icon: Icons.calendar_today,
-                    vaildators: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Feild is Required';
-                      }
+                        // iconButtonFuncation: buildEmoji,
+                        icon: Icons.emoji_emotions_outlined,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      modalBottomSheet(
+                        // datepicker: widget.datepicker,
+                        buttonFeild: 'Date',
+                        buttonHinit: 'Mar 19,2022',
+                        textEditingController: textEditingController1,
+                        buttonKeyboardType: TextInputType.datetime,
+                        iconButtonFuncation: () => datePicker(),
+                        butonColor: Theme.of(context).backgroundColor,
+                        icon: Icons.calendar_today,
+                        vaildators: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Feild is Required';
+                          }
 
-                      return null;
-                    },
-                    onSaveds: (String? value) {
-                      widget.datepicker = value;
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  modalBottomSheet(
-                    // timepicker: widget.timepicker,
-                    buttonFeild: 'Time',
-                    buttonHinit: '9:00 am',
-                    textEditingController: textEditingController2,
-                    iconButtonFuncation: () => timePicker(),
-                    buttonKeyboardType: TextInputType.datetime,
-                    butonColor: Theme.of(context).backgroundColor,
-                    icon: Icons.access_time_sharp,
-                    vaildators: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Feild is Required';
-                      }
+                          return null;
+                        },
+                        onSaveds: (String? value) {
+                          widget.datepicker = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      modalBottomSheet(
+                        // timepicker: widget.timepicker,
+                        buttonFeild: 'Time',
+                        buttonHinit: '9:00 am',
+                        textEditingController: textEditingController2,
+                        iconButtonFuncation: () => timePicker(),
+                        buttonKeyboardType: TextInputType.datetime,
+                        butonColor: Theme.of(context).backgroundColor,
+                        icon: Icons.access_time_sharp,
+                        vaildators: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Feild is Required';
+                          }
 
-                      return null;
-                    },
-                    onSaveds: (String? value) {
-                      widget.timepicker = value;
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  modalBottomSheet(
-                    // notes: widget.notes,
-                    buttonFeild: 'Notes',
-                    buttonHinit: 'To Do list',
-                    buttonKeyboardType: TextInputType.multiline,
-                    maxLine: 4,
-                    butonColor: Theme.of(context).primaryColor.withOpacity(0.4),
-                    // vaildators: (String? value) {
-                    //   if (value!.isEmpty) {
-                    //     return 'Feild is Required';
-                    //   }
+                          return null;
+                        },
+                        onSaveds: (String? value) {
+                          widget.timepicker = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      modalBottomSheet(
+                        // notes: widget.notes,
+                        buttonFeild: 'Notes',
+                        buttonHinit: 'To Do list',
+                        buttonKeyboardType: TextInputType.multiline,
+                        maxLine: 4,
+                        butonColor:
+                            Theme.of(context).primaryColor.withOpacity(0.4),
+                        // vaildators: (String? value) {
+                        //   if (value!.isEmpty) {
+                        //     return 'Feild is Required';
+                        //   }
 
-                    //   return null;
-                    // },
-                    onSaveds: (String? value) {
-                      widget.notes = value;
-                    },
+                        //   return null;
+                        // },
+                        onSaveds: (String? value) {
+                          widget.notes = value;
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

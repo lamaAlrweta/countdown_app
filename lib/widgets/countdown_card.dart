@@ -1,9 +1,66 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:date_count_down/countdown.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class DateCountDown extends StatefulWidget {
+  final String? dateTime;
+  DateCountDown(this.dateTime);
+
+  @override
+  _DateCountDownState createState() => _DateCountDownState();
+}
+
+class _DateCountDownState extends State<DateCountDown> {
+  Widget countTime; 
+
+  Timer? timer;
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer!.cancel();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    countTime = CountDown().timeLeft(
+        DateTime.parse(widget.dateTime!), ("Completed"),
+        longDateName: true, showLabel: true);
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            // border: Border.all(width: 2),
+            ),
+        padding: const EdgeInsets.all(2),
+        child: Column(
+          children: [
+            countTime
+            // Text(
+            //   countTime,
+            //   style: Theme.of(context).textTheme.bodyText1,
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class CountdaownCard extends StatelessWidget {
   //use "gradient" instead of repeating the code
+
   final Gradient _gradient = LinearGradient(
     colors: [
       Color.fromRGBO(75, 83, 228, 1).withOpacity(0.5),
@@ -52,9 +109,9 @@ class CountdaownCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(AppLocalizations.of(context)!.language,
-                              style: Theme.of(context).textTheme.title),
+                              style: Theme.of(context).textTheme.bodyText1),
                           Text('Sep 19, 2021',
-                              style: Theme.of(context).textTheme.body1),
+                              style: Theme.of(context).textTheme.bodyText2),
                         ],
                       ),
                     )
@@ -81,10 +138,11 @@ class CountdaownCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        counter('14', AppLocalizations.of(context)!.days),
-                        counter('15', AppLocalizations.of(context)!.hours),
-                        counter('16', AppLocalizations.of(context)!.minuts),
-                        counter('17', AppLocalizations.of(context)!.seconds),
+                        DateCountDown("2022-07-20 20:18:04Z"),
+                        // Counter('14', AppLocalizations.of(context)!.days),
+                        // Counter('15', AppLocalizations.of(context)!.hours),
+                        // Counter('16', AppLocalizations.of(context)!.minuts),
+                        // Counter('17', AppLocalizations.of(context)!.seconds),
                       ],
                     ),
                   ),
@@ -98,11 +156,11 @@ class CountdaownCard extends StatelessWidget {
   }
 }
 
-class counter extends StatelessWidget {
+class Counter extends StatelessWidget {
   final num;
   final numKey;
 
-  counter(this.num, this.numKey);
+  Counter(this.num, this.numKey);
 
   @override
   Widget build(BuildContext context) {
@@ -117,11 +175,11 @@ class counter extends StatelessWidget {
           children: [
             Text(
               num,
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             Text(
               numKey,
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
         ),

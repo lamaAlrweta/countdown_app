@@ -13,8 +13,8 @@ class ThemeProvider extends ChangeNotifier {
   //   }
   // }
   ThemeMode get getThememode {
-  return themeMode;
-}
+    return themeMode;
+  }
 
   void toggleTheme(bool isOn) {
     themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
@@ -22,17 +22,16 @@ class ThemeProvider extends ChangeNotifier {
   }
 }
 
-
 class MyThemes {
   static final darkTheme = ThemeData(
     textTheme: TextTheme(
-      title: TextStyle(
+      bodyText1: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
         color: Color.fromRGBO(255, 255, 255, 1),
         fontFamily: 'Montserrat-Arabic',
       ),
-      body1: TextStyle(
+      bodyText2: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
         color: Color.fromRGBO(223, 223, 223, 1),
@@ -58,23 +57,21 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    
     textTheme: TextTheme(
-      title: TextStyle(
+      bodyText1: TextStyle(
         color: Color.fromRGBO(22, 30, 41, 1),
         fontSize: 16,
         fontWeight: FontWeight.bold,
         fontFamily: 'Montserrat-Arabic',
       ),
-      body1: TextStyle(
+      bodyText2: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
         color: Color.fromRGBO(47, 62, 84, 1),
         fontFamily: 'Montserrat-Arabic',
       ),
-    
     ),
-    
+
     fontFamily: 'Montserrat-Arabic',
     textSelectionColor: Color.fromRGBO(22, 30, 41, 1),
     //HintColor
@@ -87,6 +84,5 @@ class MyThemes {
     backgroundColor: Color.fromRGBO(255, 255, 255, 1),
     //second color of card
     accentColor: Color.fromRGBO(75, 83, 228, 1),
-  
   );
 }

@@ -22,7 +22,7 @@ class SettingsButtons extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           textonTop ?? "title",
-          style: Theme.of(context).textTheme.body1,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         SizedBox(height: 10),
         Container(

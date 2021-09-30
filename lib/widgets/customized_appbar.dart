@@ -27,7 +27,7 @@ class CustomAppbar extends StatelessWidget {
               child: Text(
                 hint,
                 
-                style: Theme.of(context).textTheme.body1
+                style: Theme.of(context).textTheme.bodyText2
                
               ),
             ),

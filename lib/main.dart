@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
+import 'widgets/test.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
