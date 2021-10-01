@@ -15,5 +15,9 @@
     "days": "Days",
     "hours": "Hours",
     "minuts": "Minuts",
-    "seconds": "Seconds"
+    "seconds": "Seconds",
+    "secondLeft": "Second left",
+    "minutLeft" : "Minut left",
+    "hoursLeft" : "Hours left",
+    "daysLeft" : "days left"
 }
